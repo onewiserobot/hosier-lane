@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spaceformat: Hosier Lane</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="hero">
+  <div class="hero-content">
+    <div class="video-overlay"></div>
+    <video autoplay loop muted class="hero-video">
+      <source src="video/sample.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text">
+      <h1>Hosier lane</h1>
+    </div>
+  </div>
+</div>
+
+<section id="image-set-1">
+  <img id="image-1" src="image/lane-1.jpg">
+  <img id="image-2" src="image/lane-2.jpg">
+  <img id="image-3" src="image/lane-3.jpg">
+  <img id="image-4" src="image/lane-4.jpg">
+</section>
+
+<section id="history" class="history">
+  <div class="content-wrapper">
+    <figure>
+      <div class="title">
+        <h2>History</h2>
+        <div id="triangle-1" class="triangle shape"></div>
+      </div>
+      <img src="image/history.jpg" alt="Hoiser lane">
+    </figure>
+    
+    <p>
+      Back in the 1920s Hosier lane was within the clothing manufacturing district of the city. 
+      At the time Hosier lane was home to a warehouse for a men’s clothing company, a costume manufacturer and an organ manufacturer.
+    </p>
+  </div>
+</section>
+
+<div class="image">
+  <img src="image/face-1.jpg" alt="large graffiti eye">
+</div>
+
+<section id="content-1">
+  <div class="content-block">
+    <p>
+      Today, it's been approved by Melbourne City council as a place where street artists can showcase their talent and expressions.
+    </p>
+    <div id="triangle-2"></div>
+  </div>
+  <figure style="position: relative;">
+    <img src="image/trash-can.png" alt="trash can" style="width: 100%;">
+  </figure>
+ 
+</section>
+
+<div class="image">
+  <img src="image/glue-paper-wall.jpg" alt="Glue paper wall" style="max-height: 100vh;">
+</div>
+
+<section id="image-set-2">
+  <img id="image-6" src="image/kobe.jpg">
+  <img id="image-5" src="image/monsters-inc-2.jpg">
+  <img id="image-7" src="image/birds-eye.jpg">
+</section>
+
+<section id="content-circle-1" class="content-block" style="background-color: #BF3427; height: 100vh; overflow: hidden; display: grid; padding-top: 0; padding-bottom: 0;">
+  <div id="circle-1" class="circle" style="grid-column: 1 / 2; grid-row: 1 / 2; display: grid;">
+  </div>
+  <p>
+    Hosier lane has become a must see tourist destination, providing a memorable experience of walking through the iconic bluestone laneway while being taken an array of directions by some of the world most impressive art. 
+  </p>
+</section>
+
+
+<div class="image">
+  <img src="image/biggie.jpg" alt="Biggie" style="max-height: 100vh;">
+</div>
+
+<section id="content-2" class="content-block" style="background-color: #161959; padding: 0; height: 100vh; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-row: repeat(5, 1fr);">
+  <img src="image/yellow.jpg" alt="yellow blob" style="height: 50%; width: 100%; grid-column: 1 / 6; grid-row: 1 / 3">
+  <img id="tram" src="image/tram.png" alt="tram">
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" integrity="sha256-cyEXrJKjO3YNkpCjPxVBdi7pRJ3EF+okm1oN9Qc4rRY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+
+<script>
+  var controller = new ScrollMagic.Controller({
+	    globalSceneOptions: {
+	        triggerHook: 'onLeave'
+	    }
+	});
+
+  const images1Animation = gsap.timeline();
+  images1Animation.from("#image-1", {x: "100vw", opacity: 0})
+    .from("#image-2", {y: "-100vw", opacity: 0})
+    .from("#image-3", {y: "-100vh", opacity: 0})
+    .from("#image-4", {x: "50vw", y: "20vh", opacity: 0});
+
+  
+  const historyAnimation = gsap.timeline();
+  historyAnimation
+    //.from("#triangle-1", {y: -300, opacity: 0})
+    .from("#history img", {x: -300, opacity: 0})
+    .from("#triangle-1", {rotation: -90, opacity: 0})
+    .from("#history h2", {opacity: 0})
+    .from("#history p", {opacity: 0, duration: 1.3}, "-=1");
+
+  
+  const images2Animation = gsap.timeline();
+  images2Animation.from("#image-5", {x: "100vw", opacity: 0})
+    .from("#image-6", {y: "-100vw", opacity: 0})
+    .from("#image-7", {y: "-100vh", opacity: 0});
+
+  const circle1Animation = gsap.timeline();
+  circle1Animation.to("#circle-1", {height: "120%", width: "100%", duration: 1.3})
+    .to("#content-circle-1 p", {opacity: 1, duration: 2});
+
+  const tramAnimation = gsap.timeline();
+  tramAnimation.from("#tram", {x: "-50vw", y: -20, scale: 0.1});
+
+  const sceneData = [
+    {element: "#image-set-1", tween: images1Animation},
+    {element: "#history", tween: historyAnimation},
+    {element: "#image-set-2", tween: images2Animation},
+    {element: "#content-circle-1", tween: circle1Animation},
+    {element: "#content-2", tween: tramAnimation}
+  ];
+
+  
+
+  sceneData.forEach(function (data) {
+    new ScrollMagic.Scene({
+      triggerElement: data.element,
+      duration: "100%"
+    })
+    .setTween(data.tween)
+    .setPin(data.element)
+    .addTo(controller)
+  });
+
+  // var scene1 = new ScrollMagic.Scene({
+  //   triggerElement: "#image-set-1",
+  //   duration: "100%"
+  // })
+  // .setTween(t1)
+  // .setPin("#image-set-1")
+  // .addTo(controller)
+  // .on("start", function (event) {
+  //   console.log("starting");
+  // })
+  // .on("leave", function (event) {
+  //   console.log("leave");
+  // });
+
+  //var t2 = gsap.timeline();
+
+
+  // var scene1 = new ScrollMagic.Scene({
+  //   triggerElement: "#image-set-2",
+  // })
+  // .setTween(t1)
+  // .setPin("#image-set-1")
+  // .addTo(controller)
+  // .on("start", function (event) {
+  //   console.log("starting");
+  // })
+  // .on("leave", function (event) {
+  //   console.log("leave");
+  // });
+
+  // var t3 = gsap.timeline();
+  // t3.pause();
+
+  // gsap.from("#triangle-1",{top: -200, left: -200, duration: .5, rotate: 45, ease: "sine.inOut"});
+  // t3.to("#circle-1", {height: "120%", width: "100%", duration: 1.3});
+  // t3.to("#content-1", {opacity: 1, duration: 2});
+</script>
+</body>
+</html>
